@@ -5,20 +5,24 @@ stories:
 - story: search hospital happy path
   steps:
   - intent: greet
-  - action: utter_greet
+  - action: utter_how_can_i_help_you
   - intent: search_provider{"facility_type":"hospital","location":"San Francisco"}
   - action: action_facility_search
+  - slot_was_set:
+    - address: "300 Hyde St, San Francisco"
   - intent: thanks
   - action: utter_goodbye
 
-  - story: search hospital happy path
+- story: hospital search + location
   steps:
   - intent: greet
-  - action: utter_greet
+  - action: utter_how_can_i_help_you
   - intent: search_provider{"facility_type":"hospital"}
   - action: utter_ask_location
   - intent: inform{"location":"San Francisco"}
   - action: action_facility_search
+  - slot_was_set:
+    - address: "300 Hyde St, San Francisco"
   - intent: thanks
   - action: utter_goodbye
 
